@@ -17,7 +17,7 @@
     </p>
 
     <p>
-        <%= f.submit :SignUp %></br>
+        <%= f.submit if (@user.new_record? ? "SignUp" : "Update") %></br>
         
     </p>
 <% end %>
