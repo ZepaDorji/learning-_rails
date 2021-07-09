@@ -1,10 +1,9 @@
 
-
+<%= render 'pages/nav'%>
 <h1><%= @user.username%>'s Profile</h1>
 
 <%= gravatar_for @user, size: 200%>
-<td><%= link_to 'Edit profile', edit_user_path(@user)%> </td>
-
+<%= link_to 'Edit profile', edit_user_path(@user)%> 
 <h3> Article</h3>
 
 <%= render 'articles/article'%>
