@@ -1,0 +1,17 @@
+<h1>Users</h1>
+
+<table>
+    <tbody>
+        <% @users.each do |user|%>
+            <tr>
+                <td><%=link_to user.username,user%><td>
+                <td><%= link_to  gravatar_for(user, size: 150),user%> </td>
+               <td> <%= pluralize(user.articles.count,"article")%> </td>
+                <td><%= link_to 'view profile', user%> </td>
+                <td><%= link_to 'Edit profile', edit_user_path(user)%> </td>
+
+            </tr>
+        <%end%>
+    </tbody>
+</table>
+<%= will_paginate @users %>
