@@ -4,15 +4,25 @@
 <table>
     <tbody>
         <% @users.each do |user|%>
+
             <tr>
                 <td><%=link_to user.username,user%><td>
                 <td><%= link_to  gravatar_for(user, size: 150),user%> </td>
                <td> <%= pluralize(user.articles.count,"article")%> </td>
                 <td><%= link_to 'view profile', user%> </td>
-                <%if logged_in? && user == current_user%>
-                    <td><%= link_to 'Edit profile', edit_user_path(user)%> </td>
+
+                <%if logged_in? %>
+                    <%if user == current_user%>
+                        <td><%= link_to 'Edit profile', edit_user_path(user)%> </td>
+                    <%end%>
+                    <%if current_user.admin?%>
+                     <%= link_to "Delete user", user_path(user), method: :delete, 
+                     data:{confirm: "Are you sure to delete the user and all associated dates"}%>
+                    <%end%>
                 <%end%>
+
             </tr>
+
         <%end%>
     </tbody>
 </table>
