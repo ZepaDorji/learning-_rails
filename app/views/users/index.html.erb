@@ -1,6 +1,4 @@
 <h1>Users</h1>
-
-
 <table>
     <tbody>
         <% @users.each do |user|%>
@@ -11,15 +9,17 @@
                <td> <%= pluralize(user.articles.count,"article")%> </td>
                 <td><%= link_to 'view profile', user%> </td>
 
-                <%if logged_in? %>
-                    <%if user == current_user%>
-                        <td><%= link_to 'Edit profile', edit_user_path(user)%> </td>
+                <td>
+                    <%if logged_in? %>
+                        <%if user == current_user%>
+                            <td><%= link_to 'Edit profile', edit_user_path(user)%> </td>
+                        <%end%>
+                        <%if current_user.admin?%>
+                        <%= link_to "Delete user", user_path(user), method: :delete, 
+                        data:{confirm: "Are you sure to delete the user and all associated dates"}%>
+                        <%end%>
                     <%end%>
-                    <%if current_user.admin?%>
-                     <%= link_to "Delete user", user_path(user), method: :delete, 
-                     data:{confirm: "Are you sure to delete the user and all associated dates"}%>
-                    <%end%>
-                <%end%>
+                </td>
 
             </tr>
 
