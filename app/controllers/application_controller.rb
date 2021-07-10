@@ -8,5 +8,12 @@ class ApplicationController < ActionController::Base
     def logged_in?
         !!current_user # coverting current user into boolean
     end
+
+    def required_user
+        if !logged_in?
+            flash[:alert] = "You are not authorized and please log in"
+            redirect_to login_path
+        end
+    end
     
 end
