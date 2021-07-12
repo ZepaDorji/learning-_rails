@@ -1,1 +1,10 @@
 <h1>category<%= @category.name%>'s Profile</h1>
+                
+
+<h3> Article</h3>
+
+<%= render 'articles/article'%>
+<%if logged_in? && current_user.admin?%>
+    <%= link_to 'Edit category', edit_category_path(@category)%> 
+<%end%>
+<%= will_paginate @articles %>
