@@ -1,14 +1,19 @@
 
 </br><%= link_to 'Articles ', articles_path %> |
+<%= link_to 'View Categories', categories_path%>
 <%= link_to 'About Us ', about_path %>|
 <%= link_to 'Users' , users_path%>
 <% if logged_in?%>
     <%= link_to 'Create article', new_article_path%>|
-    <%= "Admin" if current_user.admin?%> [<%= link_to current_user.username, user_path(current_user)%>]
+    <%= "Admin" if current_user.admin?%> [<%= link_to current_user.username, 
+                                              user_path(current_user)%>]
     <%= link_to 'Log Out', logout_path, method: :delete%>|
     <%= link_to 'Delete Account', user_path(current_user),method: :delete,
      data:{confirm: "Are you sure to delete your account?"}%>|
      <%= link_to 'Add User', signup_path%>|
+     <%if current_user.admin?%>
+        <%= link_to 'Create category', new_category_path%>|
+    <%end%>
 <%else%>
     <%= link_to 'Log In', login_path%>
 <%end%>
