@@ -8,14 +8,20 @@
         </tr>
     </thead>
     <tbody>
-        <% @articles.each do |article|%>
+        <% @articles.each do |article|%></br>
             <tr>
                     <%if article.user%>
                         Article by <%=link_to article.user.username,user_path(article.user)%>
                     <%end%>
+                    
+                    <%if article.categories.any?%>
+                        <%= render article.categories%> 
+                    <%end%>
                 
                 <td><%=article.title%></td>
                 <td><%= article.description%></td>
+
+                
                 
                 <td><%= link_to 'view', article_path(article)%> </td>
                 <% if logged_in? && (article.user == current_user ||current_user.admin?)%>

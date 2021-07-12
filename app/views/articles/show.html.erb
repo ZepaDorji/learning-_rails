@@ -3,7 +3,11 @@
 <p> <strong>Description:</strong> <%= @article.description %> </p>
 
 <h3>By<%=@article.user.username%></h3></br>
-<%= link_to  gravatar_for(@article.user),user_path(@article.user)%></br>
+<%= link_to  gravatar_for(@article.user),user_path(@article.user)%></br></br>
+<%if @article.categories.any?%>
+    <%= render @article.categories%> 
+<%end%>
+</br>
 <%if logged_in? && (@article.user == current_user || current_user.admin?)%>
     <%= link_to 'Edit', edit_article_path(@article)%> |
     <%= link_to 'Delete', article_path(@article), method: :delete, data: {confirm: "Are you sure?"} %>

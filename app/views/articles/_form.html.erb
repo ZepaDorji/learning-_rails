@@ -12,7 +12,14 @@
     </p>
 
     <p>
-        <%= f.submit :Create%></br>
+        <%= f.label :category %></br>
+        <%= f.collection_select(:category_ids, Category.all, :id, :name,
+        {prompt: "Choose your categories(can be empty)"},{multiple: true,size:4}) %>
+
+    </p>
+
+    <p>
+        <%= f.submit :Update%></br>
         
     </p>
 <% end %>
